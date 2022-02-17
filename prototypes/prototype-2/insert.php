@@ -4,13 +4,13 @@
     if(!empty($_POST)){
         $firstName = $_POST['fname'];
         $lastName = $_POST['lname'];
-        $age = $_POST['age'];
+       
         $gender = $_POST['gender'];
         $person = array($firstName, $lastName, $age, $gender);
 
         // sql insert query
-        $sqlInsertQuery = "INSERT INTO employees(first_name, last_name, age, gender) 
-                                VALUES('$firstName', '$lastName', '$age', '$gender')";
+        $sqlInsertQuery = "INSERT INTO employees(first_name, last_name, gender) 
+                                VALUES('$firstName', '$lastName',  '$gender')";
         
         mysqli_query($conn, $sqlInsertQuery);
      
