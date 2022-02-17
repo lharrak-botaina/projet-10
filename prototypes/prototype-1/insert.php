@@ -10,11 +10,11 @@ if(!empty($_POST)){
 	// -The file_get_contents() reads a file into a string.
 	$fichier = file_get_contents("personnes.json");
 
-	// -The json_decode() function is used to decode or convert a JSON object to a PHP object.
+	// -The json_decode() function is used to decode or convert a JSON object to array.
 	$data = json_decode($fichier);
 	array_push($data,$person);	
 
-	// -The json_encode() function is used to encode a value to JSON format.
+	// -The json_encode() function is used to encode a value to JSON format (array=>json).
 	// -The file_put_contents() writes data to a file.
 	file_put_contents("personnes.json",json_encode($data))	;
 	header("location: index.php"); 
