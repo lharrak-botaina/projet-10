@@ -1,21 +1,23 @@
 <?php  
 include 'config.php';
-session_start();
+// session_start();
 $id = 0;
 $update = false;
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         $update= true;
-        $sqlDeleteQuery = "SELECT * FROM employees WHERE id=$id";
-        
-        $result = mysqli_query($conn, $sqlDeleteQuery);
-        $row = mysqli_fetch_all($result,MYSQLI_ASSOC);
+        $sqlEditQuery = "SELECT * FROM employees WHERE id=$id";
+        //mysqli_query = send query to database
+        $result = mysqli_query($conn, $sqlEditQuery);
+
+		//mysqli_fetch_assoc = convert result of one item to array
+        $row = mysqli_fetch_assoc($result);
         
             
             
-            $firstName = $row[0]['first_name'];
-            $lastName = $row[0]['last_name'];
-            $gender = $row[0]['gender'];
+            $firstName = $row['first_name'];
+            $lastName = $row['last_name'];
+            $gender = $row['gender'];
              
             
        
