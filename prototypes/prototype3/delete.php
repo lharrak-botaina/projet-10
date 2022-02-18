@@ -1,12 +1,15 @@
 <?php
     include "config.php";
-
+    include 'employee.php';
+	include 'employeeManager.php';
     
         if(isset($_GET['id'])){
             $id = $_GET['id'];
-            $sqlDeleteQuery = "DELETE FROM employees WHERE id= '$id'";
+           
+         $employeeManager = new EmployeeManager();
 
-            mysqli_query($conn, $sqlDeleteQuery);
+         $employeeManager->deleteEmployees($conn, $id);
+
             header('Location: index.php');
             
         

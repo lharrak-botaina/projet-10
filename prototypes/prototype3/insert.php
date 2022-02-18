@@ -1,20 +1,29 @@
 <?php
 
     include 'config.php';
-    if(!empty($_POST)){
-        $firstName = $_POST['fname'];
-        $lastName = $_POST['lname'];
-        
-        $gender = $_POST['gender'];
-        $person = array($firstName, $lastName,  $gender);
+    include 'employee.php';
+	include 'employeeManager.php';
 
-        // sql insert query
-        $sqlInsertQuery = "INSERT INTO employees(first_name, last_name,  gender) 
-                                VALUES('$firstName', '$lastName',  '$gender')";
-        
-        mysqli_query($conn, $sqlInsertQuery);
-     
-        header("Location: index.php");
+    if(!empty($_POST)){
+
+
+        // - The code starts by creating a new employee object.
+        // - The code then creates an EmployeeManager object and sets the fname, lname, gender of the employee to be inserted into the database.
+        // - The code then inserts the newly created employees into the database using their first and last names as well as their gender.
+        // - The code is meant to insert a new employee into the database.
+         $Employee = new employee();
+         $employeeManager = new EmployeeManager();
+
+         $Employee ->setfirstName($_POST['fname']);
+         $Employee ->setlastName($_POST['lname']);
+         $Employee ->setgender($_POST['gender']);
+		 
+         
+         
+         $employeeManager->insertEmployees($conn, $Employee);
+         header("Location: index.php");
+
+      
 
     }
 ?>
