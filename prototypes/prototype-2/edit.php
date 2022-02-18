@@ -1,7 +1,7 @@
 <?php  
 include 'config.php';
 // session_start();
-$id = 0;
+
 $update = false;
     if(isset($_GET['id'])){
         $id = $_GET['id'];
