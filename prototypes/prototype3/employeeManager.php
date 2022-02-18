@@ -33,6 +33,16 @@ class EmployeeManager{
         
         $sqlDeleteQuery = "DELETE  FROM employees WHERE id= '$id'";
         mysqli_query($conn, $sqlDeleteQuery);
+
+    }
+
+    function editEmployees($conn,$id){
+          $firstName = $Employee->getfirstName();
+        $lastName = $Employee->getlastName();
+        $gender = $Employee->getgender();
+        $sqlEditQuery = "SELECT * FROM employees WHERE id=$id";
+        mysqli_query($conn, $sqlEditQuery);
     }
 }
+
 ?>

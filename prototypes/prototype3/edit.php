@@ -1,42 +1,36 @@
 <?php  
 include 'config.php';
-
-
+include 'employee.php';
+include 'employeeManager.php';
     $firstName = '';
     $lastName='';
     $gender = '';
+
+    $employeeManager = new EmployeeManager();
+   
+
     if(isset($_GET['id'])){
         $id = $_GET['id'];
+        $Employee ->setfirstName($_POST['fname']);
+         $Employee ->setlastName($_POST['lname']);
+         $Employee ->setgender($_POST['gender']);
+        $Employee= $employeeManager->getAllEmployees($conn, $id);
         
-        $sqlEditQuery = "SELECT * FROM employees WHERE id=$id";
-        //mysqli_query = send query to database
-        $result = mysqli_query($conn, $sqlEditQuery);
-        //mysqli_fetch_assoc = convert result of one item to array
-        $row = mysqli_fetch_assoc($result);
-        
-            
-            
-            $firstName = $row['first_name'];
-            $lastName = $row['last_name'];
-            $gender = $row['gender'];
-             
-            
-       
     }
 
-    if(!empty($_POST)){
-        
-        $firstName = $_POST['first_name'];
-        $lastName = $_POST['last_name'];
-        $gender = $_POST['gender'];
+    // if(!empty($_POST)){
+    //     $Employee = new employee();
+    //     $firstName = $_POST['first_name'];
+    //     $lastName = $_POST['last_name'];
+    //     $gender = $_POST['gender'];
 
-        $sqlUpdateQuery ="UPDATE employees SET 
-        first_name='$firstName',last_name='$lastName',gender='$gender' WHERE id=$id ";
+    //     $sqlUpdateQuery ="UPDATE employees SET 
+    //     first_name='$firstName',last_name='$lastName',gender='$gender' WHERE id=$id ";
 
-        $result = mysqli_query($conn, $sqlUpdateQuery);
-        header('location: index.php');
+    //     $result = mysqli_query($conn, $sqlUpdateQuery);
+    //     header('location: index.php');
         
-    };
+    // };
     
 ?>
 
@@ -65,10 +59,10 @@ include 'config.php';
                             <div class="controls">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group"> <label for="inputFName">Firstname *</label> <input id="inputFName" type="text" name="first_name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required." value="<?php echo $firstName; ?>" > </div>
+                                        <div class="form-group"> <label for="inputFName">Firstname *</label> <input id="inputFName" type="text" name="first_name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required." value="<?php echo $Employee['first_name'] ?>" > </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group"> <label for="inputLName">Lastname *</label> <input id="inputLName" name="last_name" type="text"  class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required." value="<?php echo $lastName;?>"> </div>
+                                        <div class="form-group"> <label for="inputLName">Lastname *</label> <input id="inputLName" name="last_name" type="text"  class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required." value="<?php echo $Employee['last_name']?>"> </div>
                                     </div>
                                 </div>
                                 <div class="row">
