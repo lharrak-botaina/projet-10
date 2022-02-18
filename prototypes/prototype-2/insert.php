@@ -25,6 +25,12 @@
 ?>
 
 
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,47 +38,73 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
-<div>
-        <div>
-		<div><h3>Create a User</h3>
-        <form method="POST" action="">
-			<div>
-				<label for="inputFName">First Name</label>
-				<input type="text" required="required" id="inputFName"  name="fname" 
-				 placeholder="First Name">
-				<span></span>
-			</div>
-			
-			<div>
-				<label for="inputLName">Last Name</label>
-				<input type="text" required="required" id="inputLName" name="lname"
-				 placeholder="Last Name">
-        		<span></span>
-			</div>
-			
-			<!-- <div>
-				<label for="inputAge">Age</label>
-				<input type="number" required="required" class="form-control" id="inputAge" name="age" placeholder="Age">
-				<span></span>
-			</div> -->
-				<div class="form-group">
-					<label for="inputGender">Gender</label>
-					<select class="form-control" required="required" id="inputGender" name="gender"  >
-						<option>Please Select</option>
-						<option value="Male">Male</option>
-						<option value="Female">Female</option>
-					</select>
-					<span></span>
-        		</div>
-    
-			<div class="form-actions">
-					<button type="submit">Create</button>
-					<a href="index.php">Back</a>
-			</div>
-		</form>
-        </div></div>        
+
+
+        <div class="container"><div class=" text-center mt-5 ">
+        <h1>CRUD</h1>
+    </div>
+    <div class="row ">
+        <div class="col-lg-7 mx-auto">
+            <div class="card mt-2 mx-auto p-4 bg-light">
+                <div class="card-body bg-light">
+                    <div class="container">
+                        <form method="POST" action="" id="contact-form" role="form">
+                            <div class="controls">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label for="inputFName">Firstname *</label> <input id="inputFName" type="text" name="first_name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required." value="<?php echo $firstName; ?>" > </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label for="inputLName">Lastname *</label> <input id="inputLName" name="last_name" type="text"  class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required." value="<?php echo $lastName;?>"> </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                   
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label  for="inputGender">Gender</label>
+                                         <select id="inputGender" name="gender"  class="form-control" required="required" data-error="Please specify your need.">
+                                                <option value="" selected disabled>--Select Your gender--</option>
+                                                <option value="male" <?= $gender== 'male' ? 'selected' : '' ?>>Male</option>
+                                                <option value="Female" <?= $gender== 'Female' ? 'selected' : '' ?>>Female</option>
+                                                
+                                            </select> </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    
+                                    <div class="col-md-12"> <button type="update" class="btn btn-success btn-send pt-2 btn-block " >Create </button></div>
+									<a href="index.php">Back</a>
+								</div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- /.8 -->
+        </div> <!-- /.row-->
+    </div>
+
+
+
 </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
