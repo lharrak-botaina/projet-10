@@ -1,10 +1,10 @@
 <?php
     include 'config.php';
 
-    $sqlGetData = 'SELECT id, first_name, last_name, gender FROM employees';
+    $sqlGetData = 'SELECT id, first_name, last_name,  gender FROM employees';
     $result = mysqli_query($conn ,$sqlGetData);
     $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
+   
 ?>
 
 
@@ -35,9 +35,10 @@
             <tr>
                 <td><?= $person['first_name']?></td>
                 <td><?= $person['last_name']?></td>
-                
+               
                 <td><?= $person['gender']?></td>
                 <td>
+                    
                     <a href="edit.php?id=<?php echo $person['id'] ?>">Edit</a>
                     <a href="delete.php?id=<?php echo $person['id'] ?>">delete</a>
                 </td>

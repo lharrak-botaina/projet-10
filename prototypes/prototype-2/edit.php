@@ -1,29 +1,27 @@
-<?php
-
-    include 'config.php';
-	
-
-	$firstName = '';
-    $lastName='';
-    $gender = '';
-    if(!empty($_POST)){
-        $firstName = $_POST['fname'];
-        $lastName = $_POST['lname'];
+<?php  
+include 'config.php';
+session_start();
+$id = 0;
+$update = false;
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $update= true;
+        $sqlDeleteQuery = "SELECT * FROM employees WHERE id=$id";
         
-        $gender = $_POST['gender'];
-        $person = array($firstName, $lastName, $gender);
-
-        // sql insert query
-        $sqlInsertQuery = "INSERT INTO employees(first_name, last_name,  gender) 
-                                VALUES('$firstName', '$lastName',  '$gender')";
+        $result = mysqli_query($conn, $sqlDeleteQuery);
+        $row = mysqli_fetch_all($result,MYSQLI_ASSOC);
         
-        mysqli_query($conn, $sqlInsertQuery);
-     
-        header("Location: index.php");
-
+            
+            
+            $firstName = $row[0]['first_name'];
+            $lastName = $row[0]['last_name'];
+            $gender = $row[0]['gender'];
+             
+            
+       
     }
+    
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,17 +36,18 @@
         <div>
 		<div><h3>Create a User</h3>
         <form method="POST" action="">
+            <input type="hidden" name="id" value = "<?php echo $id?>">
 			<div>
 				<label for="inputFName">First Name</label>
 				<input type="text" required="required" id="inputFName"  name="fname" 
-				 placeholder="First Name">
+				value="<?php echo $firstName; ?>" placeholder="First Name">
 				<span></span>
 			</div>
 			
 			<div>
 				<label for="inputLName">Last Name</label>
 				<input type="text" required="required" id="inputLName" name="lname"
-				 placeholder="Last Name">
+				value="<?php echo $lastName;?>" placeholder="Last Name">
         		<span></span>
 			</div>
 			
@@ -59,7 +58,7 @@
 			</div> -->
 				<div class="form-group">
 					<label for="inputGender">Gender</label>
-					<select class="form-control" required="required" id="inputGender" name="gender"  >
+					<select class="form-control" required="required" id="inputGender" name="gender" value="<?php echo $gender; ?>" >
 						<option>Please Select</option>
 						<option value="Male">Male</option>
 						<option value="Female">Female</option>
@@ -68,8 +67,14 @@
         		</div>
     
 			<div class="form-actions">
+            <?php
+					if($update== true):
+				 ?>
+				 <button type="update">update</button>
+				 <?php else:?>
 					<button type="submit">Create</button>
 					<a href="index.php">Back</a>
+					<?php endif;?>
 			</div>
 		</form>
         </div></div>        
