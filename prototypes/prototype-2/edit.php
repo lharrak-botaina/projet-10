@@ -21,7 +21,7 @@ $update = false;
        
     }
 
-    if(!empty($)){
+    if(!empty($_POST)){
         
         $firstName = $_POST['first_name'];
         $lastName = $_POST['last_name'];
@@ -50,7 +50,7 @@ $update = false;
         <div>
 		<div><h3>Create a User</h3>
         <form method="POST" action="">
-            <input type="hidden" name="id" value = "<?php echo $id?>">
+            <!-- <input type="hidden" name="id" value = "<?php echo $id?>"> -->
 			<div>
 				<label for="inputFName">First Name</label>
 				<input type="text" required="required" id="inputFName"  name="first_name" 
@@ -74,14 +74,15 @@ $update = false;
 					<label for="inputGender">Gender</label>
 					<select class="form-control" required="required" id="inputGender" name="gender" value="<?php echo $gender; ?>" >
 						<option>Please Select</option>
-						<option value="Male">Male</option>
-						<option value="Female">Female</option>
+						<option value="male" <?= $gender== 'male' ? 'selected' : '' ?> value="Male">Male</option>
+						<option value="Female" <?= $gender== 'Female' ? 'selected' : '' ?> value="Female">Female</option>
 					</select>
 					<span></span>
         		</div>
     
 			<div class="form-actions">
             <?php
+			//change create button to update 
 					if($update== true):
 				 ?>
 				 <button type="update">update</button>
