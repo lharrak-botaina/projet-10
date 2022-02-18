@@ -20,6 +20,20 @@ $update = false;
             
        
     }
+
+    if(!empty($)){
+        
+        $firstName = $_POST['first_name'];
+        $lastName = $_POST['last_name'];
+        $gender = $_POST['gender'];
+
+        $sqlUpdateQuery ="UPDATE employees SET 
+        first_name='$firstName',last_name='$lastName',gender='$gender' WHERE id=$id ";
+
+        $result = mysqli_query($conn, $sqlUpdateQuery);
+        header('location: index.php');
+        
+    };
     
 ?>
 
@@ -39,14 +53,14 @@ $update = false;
             <input type="hidden" name="id" value = "<?php echo $id?>">
 			<div>
 				<label for="inputFName">First Name</label>
-				<input type="text" required="required" id="inputFName"  name="fname" 
+				<input type="text" required="required" id="inputFName"  name="first_name" 
 				value="<?php echo $firstName; ?>" placeholder="First Name">
 				<span></span>
 			</div>
 			
 			<div>
 				<label for="inputLName">Last Name</label>
-				<input type="text" required="required" id="inputLName" name="lname"
+				<input type="text" required="required" id="inputLName" name="last_name"
 				value="<?php echo $lastName;?>" placeholder="Last Name">
         		<span></span>
 			</div>
