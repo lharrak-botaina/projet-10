@@ -2,7 +2,7 @@
 include 'config.php';
 // session_start();
 
-$update = false;
+
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         $update= true;
@@ -83,15 +83,9 @@ $update = false;
         		</div>
     
 			<div class="form-actions">
-            <?php
-			//change create button to update 
-					if($update== true):
-				 ?>
-				 <button type="update">update</button>
-				 <?php else:?>
-					<button type="submit">Create</button>
-					<a href="index.php">Back</a>
-					<?php endif;?>
+			<button type="update">update</button>
+
+					
 			</div>
 		</form>
         </div></div>        
