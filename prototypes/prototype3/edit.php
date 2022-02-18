@@ -1,35 +1,44 @@
-<?php
+<?php  
+include 'config.php';
 
-    include 'config.php';
-	
 
-	$firstName = '';
+    $firstName = '';
     $lastName='';
     $gender = '';
-    if(!empty($_POST)){
-        $firstName = $_POST['fname'];
-        $lastName = $_POST['lname'];
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
         
-        $gender = $_POST['gender'];
-        $person = array($firstName, $lastName, $gender);
-
-        // sql insert query
-        $sqlInsertQuery = "INSERT INTO employees(first_name, last_name,  gender) 
-                                VALUES('$firstName', '$lastName',  '$gender')";
+        $sqlEditQuery = "SELECT * FROM employees WHERE id=$id";
+        //mysqli_query = send query to database
+        $result = mysqli_query($conn, $sqlEditQuery);
+        //mysqli_fetch_assoc = convert result of one item to array
+        $row = mysqli_fetch_assoc($result);
         
-        mysqli_query($conn, $sqlInsertQuery);
-     
-        header("Location: index.php");
-
+            
+            
+            $firstName = $row['first_name'];
+            $lastName = $row['last_name'];
+            $gender = $row['gender'];
+             
+            
+       
     }
+
+    if(!empty($_POST)){
+        
+        $firstName = $_POST['first_name'];
+        $lastName = $_POST['last_name'];
+        $gender = $_POST['gender'];
+
+        $sqlUpdateQuery ="UPDATE employees SET 
+        first_name='$firstName',last_name='$lastName',gender='$gender' WHERE id=$id ";
+
+        $result = mysqli_query($conn, $sqlUpdateQuery);
+        header('location: index.php');
+        
+    };
+    
 ?>
-
-
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -76,9 +85,8 @@
                                 </div>
                                 <div class="row">
                                     
-                                    <div class="col-md-12"> <button type="update" class="btn btn-success btn-send pt-2 btn-block " >Create </button></div>
-									<a href="index.php">Back</a>
-								</div>
+                                    <div class="col-md-12"> <button type="update" class="btn btn-success btn-send pt-2 btn-block " >update </button></div>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -92,19 +100,3 @@
 </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
