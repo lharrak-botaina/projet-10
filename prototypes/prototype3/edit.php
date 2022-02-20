@@ -1,38 +1,48 @@
-<?php  
-include 'config.php';
-include 'employee.php';
-include 'employeeManager.php';
-    $firstName = '';
-    $lastName='';
-    $gender = '';
+
+
+<?php
+    include 'config.php';
+    include 'employee.php';
+    include 'employeeManager.php';
+
+    
+    // ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
     $employeeManager = new EmployeeManager();
-   
 
     if(isset($_GET['id'])){
         $id = $_GET['id'];
-        $Employee ->setfirstName($_POST['fname']);
-         $Employee ->setlastName($_POST['lname']);
-         $Employee ->setgender($_POST['gender']);
-        $Employee= $employeeManager->getAllEmployees($conn, $id);
-        
+        $employee = $employeeManager->SelectRowEdit($connectDB, $id);
+
     }
 
-    // if(!empty($_POST)){
-    //     $Employee = new employee();
-    //     $firstName = $_POST['first_name'];
-    //     $lastName = $_POST['last_name'];
-    //     $gender = $_POST['gender'];
 
-    //     $sqlUpdateQuery ="UPDATE employees SET 
-    //     first_name='$firstName',last_name='$lastName',gender='$gender' WHERE id=$id ";
 
-    //     $result = mysqli_query($conn, $sqlUpdateQuery);
-    //     header('location: index.php');
+
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    if(!empty($_POST)){
+        $employee = new Employee();
+
+        $employee->setfirstName($_POST['fname']);
+        $employee->setlastName($_POST['lname']);
+        $employee->setgender($_POST['gender']);
         
-    // };
-    
+
+        $employeeManager->editEmployee($connectDB, $employee, $id);
+
+        header('Location: index.php');
+        
+    }
 ?>
+
+
+
+
+
+<!-- // --------------------html ----------------------------------------------------------------------------------------------------------------------------------- -->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -59,10 +69,10 @@ include 'employeeManager.php';
                             <div class="controls">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group"> <label for="inputFName">Firstname *</label> <input id="inputFName" type="text" name="first_name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required." value="<?php echo $Employee['first_name'] ?>" > </div>
+                                        <div class="form-group"> <label for="inputFName">Firstname *</label> <input id="inputFName" type="text" name="fname" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required." value="<?php echo $employee['first_name']; ?>" > </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group"> <label for="inputLName">Lastname *</label> <input id="inputLName" name="last_name" type="text"  class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required." value="<?php echo $Employee['last_name']?>"> </div>
+                                        <div class="form-group"> <label for="inputLName">Lastname *</label> <input id="inputLName" name="lname" type="text"  class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required." value="<?php echo $employee['last_name'];?>"> </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -71,15 +81,15 @@ include 'employeeManager.php';
                                         <div class="form-group"> <label  for="inputGender">Gender</label>
                                          <select id="inputGender" name="gender"  class="form-control" required="required" data-error="Please specify your need.">
                                                 <option value="" selected disabled>--Select Your gender--</option>
-                                                <option value="male" <?= $gender== 'male' ? 'selected' : '' ?>>Male</option>
-                                                <option value="Female" <?= $gender== 'Female' ? 'selected' : '' ?>>Female</option>
+                                                <option value="male" <?= $employee['gender']== 'male' ? 'selected' : '' ?>>Male</option>
+                                                <option value="Female" <?= $employee['gender']== 'Female' ? 'selected' : '' ?>>Female</option>
                                                 
                                             </select> </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     
-                                    <div class="col-md-12"> <button type="update" class="btn btn-success btn-send pt-2 btn-block " >update </button></div>
+                                    <div class="col-md-12"> <button value="Update" name="update" type="update" class="btn btn-success btn-send pt-2 btn-block " >update </button></div>
                                 </div>
                             </div>
                         </form>

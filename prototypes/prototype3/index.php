@@ -2,12 +2,13 @@
     include 'config.php';
     include 'employeeManager.php';
     $employeeManager = new EmployeeManager();
-    $data = $employeeManager->getAllEmployees($conn);
+    $data = $employeeManager->getAllEmployees($connectDB);
 
     
    
 ?>
 
+<!-- -------------------------html----------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +27,7 @@
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Age</th>
+                <!-- <th>Age</th> -->
                 <th>Gender</th>
                 <th>Action</th>
             </tr>

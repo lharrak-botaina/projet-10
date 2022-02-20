@@ -1,8 +1,8 @@
 <?php
-   $conn = mysqli_connect('localhost', 'boutaina', 'test123', 'employees_db');
+   $connectDB = mysqli_connect('localhost', 'boutaina', 'test123', 'employees_db');
 
    // check connection
- if(!$conn){
+ if(!$connectDB){
       echo 'Connection error: ' . mysqli_connect_error(); 
   }
 ?>

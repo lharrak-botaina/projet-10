@@ -20,13 +20,14 @@
 		 
          
          
-         $employeeManager->insertEmployees($conn, $Employee);
+         $employeeManager->insertEmployees($connectDB, $Employee);
          header("Location: index.php");
 
       
 
     }
 ?>
+<!-- -----------------------html----------------------------------------------------------------------------------------------------------------------------------- -->
 
 
 <!DOCTYPE html>
@@ -54,11 +55,11 @@
         		<span></span>
 			</div>
 			
-			<div>
+			<!-- <div>
 				<label for="inputAge">Age</label>
 				<input type="number" required="required" class="form-control" id="inputAge" name="age" placeholder="Age">
 				<span></span>
-			</div>
+			</div> -->
 				<div class="form-group">
 					<label for="inputGender">Gender</label>
 					<select class="form-control" required="required" id="inputGender" name="gender" >

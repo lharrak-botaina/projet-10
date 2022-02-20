@@ -8,7 +8,7 @@
            
          $employeeManager = new EmployeeManager();
 
-         $employeeManager->deleteEmployees($conn, $id);
+         $employeeManager->deleteEmployees($connectDB, $id);
 
             header('Location: index.php');
             
