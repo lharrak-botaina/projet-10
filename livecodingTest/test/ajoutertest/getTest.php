@@ -1,6 +1,5 @@
 <?php
-include 'GestionEmployes.php';
-include 'Employe.php';
+include '../GestionEmployes.php';
 
 $GestionEmployes = new GestionEmployes();
 $data = $GestionEmployes->RechercherTous();
@@ -16,3 +15,6 @@ foreach($data as $employes){
 
 
 ?>
+
+
+
