@@ -73,7 +73,7 @@ class GestionEmployes{
     public function Modifier($id,$nom,$prenom,$dateNaissance)
     {
         // Requête SQL
-        $sql = "UPDATE employes SET 
+        $sql = "UPDATE employees SET 
         first_name='$prenom',last_name='$nom',  date_naissance='$dateNaissance'
         WHERE Id= $id";
 
