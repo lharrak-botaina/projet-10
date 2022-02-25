@@ -1,36 +1,37 @@
-
 <?php
-	include 'employeeManager.php';
 
-    if(!empty($_POST)){
-		$employee = new Employee();	
-		$employeeManager = new EmployeeManager();
+include "employeeManager.php";
+$employeeManager = new EmployeeManager();
 
-        $employee->setFirstName($_POST['fname']);
-        $employee->setLastName($_POST['lname']);
-        $employee->setDateNaissance($_POST['date_naissance']);
-        $employee->setRegistrationNumber($_POST['registNumber']);
-        $employee->setfunctionEmployee($_POST['functionEmployee']);
-        $employee->setSalary($_POST['salary']);
-        $employee->setDepartement($_POST['departement']);
-        $employee->setPhoto($_POST['photo']);
+if(isset($_GET['id'])){
+    $employe = $employeeManager->getEmployee($_GET['id']);
+}
 
-        
+if(isset($_POST['edit'])){
+    $id = $_POST['id'];
+    $registrationNumber=$_POST['registNumber'];
+    $firstName=$_POST['first_name'];
+    $lastName=$_POST[' last_name'];
+    $dateNaissance=$_POST['date_naissance'];
+    $functionEmployee=$_POST['functionEmployee'];
+    $salary=$_POST['salary'];
+    $departement=$_POST['departement'];
+    $photo=$_POST['photo'];
 
-       
-       
 
-		$employeeManager->insertEmployee($employee);
-     
-        header("Location: index.php");
-
-    }
+    
+    $employeeManager->editEmployee($id,
+                                $registrationNumber,
+                                $firstName,
+                                $lastName,
+                                $dateNaissance,
+                                $functionEmployee,
+                                $salary,
+                                $departement,
+                                $photo);
+    header('Location: index.php');
+}
 ?>
-
-
-
-
-
 
 
 
@@ -55,14 +56,14 @@
                         <h4>Contact Information</h4>
                         <p>Fill up the form and our Team will get back to you within 24 hours.</p>
                     </div>
-                    <div class="medium "> 
+                    <div class="medium"> 
                         <p>+0123 456 78910</p> <a href="index.php"> <i  class="fa fa-home"></i> </a> 
-                        <!-- <p>hello@flowbase.com</p> <i class="fa fa-map-marker"></i>
-                        <p>102 street 2714 Don</p> -->
+                        <p>hello@flowbase.com</p> <i class="fa fa-map-marker"></i>
+                        <p>102 street 2714 Don</p>
                     </div>
                     <div class="last"> <span><i class="fa fa-facebook-f"></i></span> <span> <i class="fa fa-twitter"></i></span> <span><i class="fa fa-instagram"></i></span> <span><i class="fa fa-linkedin"></i></span> </div>
                 </div>
-                <div class="right-side col-lg-12">
+                <div class="right-side">
                     <div class="card-details">
                       <div class="input-group">
                     <form method="POST" action="">
@@ -76,7 +77,6 @@
                         </div>
                         <div class="input-group">
                             <div class="input"> 
-                                <!-- <input  type="text" required="required"> <span>Function</span> -->
                                 <label for="country">Function</label>
                                 <select id="country" name="functionEmployee">
                                     <option value="">choose...</option>
@@ -105,9 +105,7 @@
                                     <option value="COMP">comptable</option>
 
                             </select>
-                            <!-- <div> <input type="radio" name="RH" id="r1"> <label for="r1">RH</label> </div>
-                            <div> <input type="radio" name="labo" id="r2"> <label for="r2">Laboratoire</label> </div>
-                            <div> <input type="radio" name="compta" id="r3"> <label for="r3">comptable</label> </div> -->
+                           
                         </div>
                         <div class="input-group option">
                           <span>photo</span>
@@ -120,7 +118,7 @@
 
                     </div>
                     <div class="below-content">
-                        <button type="submit">Create</button>
+                        <button type="submit">Update</button>
                         <a href="index.php">Back</a>
                         
                         </form>
@@ -129,17 +127,11 @@
             </div>
         </div>
     </div>
-       
+                
+              
+            
+      
+          
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
 

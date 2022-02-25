@@ -80,20 +80,29 @@
         }
 
 
-        public function deleteEmployee($id){
-            $sqlDeleteQuery = "DELETE FROM employees WHERE id= '$id'";
-
-            mysqli_query($this->getConnection(), $sqlDeleteQuery);
-        }
+        
 
 
-        public function editEmployee($id, $first_name, $last_name, $dateNaissance){
+        public function editEmployee($id,
+                                    $registrationNumber,
+                                    $firstName,
+                                    $lastName,
+                                    $dateNaissance,
+                                    $functionEmployee,
+                                    $salary,
+                                    $departement,
+                                    $photo){
      
             // Update query
             $sqlUpdateQuery = "UPDATE employees SET 
-                         first_name='$first_name', 
-                         last_name='$last_name', 
-                         date_naissance='$dateNaissance' 
+                         registNumber='$registrationNumber',
+                         first_name='$firstName', 
+                         last_name='$lastName', 
+                         date_naissance='$dateNaissance' ,
+                         functionEmployee ='$functionEmployee',
+                         salary='$salary',
+                         departement='$departement',
+                         photo='$photo'
                          
                          WHERE id=$id";
      
@@ -118,13 +127,32 @@
 
             $employee = new Employee();
             $employee->setId($employee_data['id']);
+            $employee->setRegistrationNumber($employee_data['registNumber']);
             $employee->setFirstName($employee_data['first_name']);
             $employee->setLastName($employee_data['last_name']);
             $employee->setDateNaissance($employee_data['date_naissance']);
+            $employee->setFunctionEmployee($employee_data['functionEmployee']);
+            $employee->setSalary($employee_data['salary']);
+            $employee->setDepartement(['departement']);
+            $employee->setPhoto(['photo']);
+
            
             
             return $employee;
         }
+
+
+
+
+        public function delete($id){
+            $sql = "DELETE FROM employees WHERE id= '$id'";
+            mysqli_query($this->getConnection(), $sql);
+        }
+
+
+        
+
+
     }
 
 
