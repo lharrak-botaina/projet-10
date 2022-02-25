@@ -82,7 +82,7 @@
 
         
 
-
+// Edit function.
         public function editEmployee($id,
                                     $registrationNumber,
                                     $firstName,
@@ -103,7 +103,6 @@
                          salary='$salary',
                          departement='$departement',
                          photo='$photo'
-                         
                          WHERE id=$id";
      
              // Make query 
@@ -133,11 +132,9 @@
             $employee->setDateNaissance($employee_data['date_naissance']);
             $employee->setFunctionEmployee($employee_data['functionEmployee']);
             $employee->setSalary($employee_data['salary']);
-            $employee->setDepartement(['departement']);
-            $employee->setPhoto(['photo']);
+            $employee->setDepartement($employee_data['departement']);
+            $employee->setPhoto($employee_data['photo']);
 
-           
-            
             return $employee;
         }
 

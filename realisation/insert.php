@@ -101,8 +101,8 @@
                             <select name="departement" id="">
                                     <option value="">choose...</option>
                                     <option value="RH">RH</option>
-                                    <option value="LABO">Labo</option>
-                                    <option value="COMP">comptable</option>
+                                    <option value="labo">Labo</option>
+                                    <option value="comptable">comptable</option>
 
                             </select>
                             <!-- <div> <input type="radio" name="RH" id="r1"> <label for="r1">RH</label> </div>

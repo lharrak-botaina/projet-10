@@ -7,11 +7,11 @@ if(isset($_GET['id'])){
     $employe = $employeeManager->getEmployee($_GET['id']);
 }
 
-if(isset($_POST['edit'])){
+if(isset($_POST['Update'])){
     $id = $_POST['id'];
     $registrationNumber=$_POST['registNumber'];
-    $firstName=$_POST['first_name'];
-    $lastName=$_POST[' last_name'];
+    $firstName=$_POST['fname'];
+    $lastName=$_POST['lname'];
     $dateNaissance=$_POST['date_naissance'];
     $functionEmployee=$_POST['functionEmployee'];
     $salary=$_POST['salary'];
@@ -67,49 +67,53 @@ if(isset($_POST['edit'])){
                     <div class="card-details">
                       <div class="input-group">
                     <form method="POST" action="">
-                        <div class="input"> <input type="text" maxlength = "4" name="registNumber" required="required"> <span>registration Number</span> </div>
+                        <div><input name="id" value="<?php echo $employe->getId()?>" type="hidden"></div>
+                        <div class="input"> <input type="text" maxlength = "4" name="registNumber" required="required" value="<?php echo $employe->getRegistrationNumber()?>"> <span>registration Number</span> </div>
 
                     </div>
                         <div class="input-group">
 
-                            <div class="input"> <input type="text" id="inputFName" name="fname" required="required"> <span>First Name</span> </div>
-                            <div class="input"> <input type="text" id="inputLName" name="lname" required="required"> <span>Last Name</span> </div>
+                            <div class="input"> <input type="text" id="inputFName" name="fname" required="required" value="<?php echo $employe->getFirstName()?>"> <span>First Name</span> </div>
+                            <div class="input"> <input type="text" id="inputLName" name="lname" required="required" value="<?php echo $employe->getLastName()?>"> <span>Last Name</span> </div>
                         </div>
                         <div class="input-group">
                             <div class="input"> 
                                 <label for="country">Function</label>
                                 <select id="country" name="functionEmployee">
                                     <option value="">choose...</option>
-                                    <option value="function 1">function 1</option>
-                                    <option value="function 2">function 2</option>
-                                    <option value="function 3">function 3</option>
-                                    <option value="function 4">function 4</option>
+                                    <option value="function 1" <?= $employe->getFunctionEmployee()== 'function 1' ? 'selected' : '' ?>>function 1</option>
+                                    <option value="function 2" <?= $employe->getFunctionEmployee()== 'function 2' ? 'selected' : '' ?> >function 2</option>
+                                    <option value="function 3"<?= $employe->getFunctionEmployee()== 'function 3' ? 'selected' : '' ?>>function 3</option>
+                                    <option value="function 4" <?= $employe->getFunctionEmployee()== 'function 4' ? 'selected' : '' ?>>function 4</option>
                                 </select>
                              </div>
 
-                            <div class="input"> <input  type="text" name="salary" required="required" > <span>salary MAD</span> </div>
+                            <div class="input"> <input  type="text" name="salary" required="required" value="<?php echo $employe->getSalary()?>" > <span>salary MAD</span> </div>
 
                         </div>
                        
                         <div class="input-group">
                             <span>date</span>
-                            <div class="input"> <input id="inputAge" name="date_naissance" type="date" required="required">  </div>
+                            <div class="input"> <input id="inputAge" name="date_naissance" type="date" required="required" value="<?php echo $employe->getDateNaissance()?>">  </div>
 
                         </div>
                         <h6>Department</h6>
                         <div class="centered" >
-                            <select name="departement" id="">
-                                    <option value="">choose...</option>
-                                    <option value="RH">RH</option>
-                                    <option value="LABO">Labo</option>
-                                    <option value="COMP">comptable</option>
 
-                            </select>
+
+                                <select id="country" name="departement">
+                                    <option value="">choose...</option>
+                                    <option value="RH" <?= $employe->getDepartement()== 'RH' ? 'selected' : '' ?>>RH</option>
+                                    <option value="labo" <?= $employe->getDepartement()== 'labo' ? 'selected' : '' ?> >labo</option>
+                                    <option value="comptable"<?= $employe->getDepartement()== 'comptable' ? 'selected' : '' ?>>comptable</option>
+                                </select>
+
+                        
                            
                         </div>
                         <div class="input-group option">
                           <span>photo</span>
-                          <div class="input"> <input type="file" name="photo"  required="required">  </div>
+                          <div class="input"> <input type="file" name="photo" value="<?php echo $employe->getPhoto()?>"></div>
 
                       </div>
 
@@ -118,7 +122,7 @@ if(isset($_POST['edit'])){
 
                     </div>
                     <div class="below-content">
-                        <button type="submit">Update</button>
+                        <button name="Update" type="submit">Update</button>
                         <a href="index.php">Back</a>
                         
                         </form>
