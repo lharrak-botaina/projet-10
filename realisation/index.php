@@ -43,11 +43,14 @@
 
     
 </div>
-            <h1>Employees Manager</h1>
+<div id="h1">
+<h1>Employees Manager</h1>
+</div>
+           
 
 <table class="table" >
     <thead>
-    <button><a href="insert.php">insert</a></button>
+    <button id="insert"><a  href="insert.php">insert</a></button>
         <tr>
 
             <th scope="col">Registration number</th>
@@ -81,13 +84,10 @@
                 <td><?= $employee->getDepartement()?></td>
                 <td><?= $employee->getPhoto()?></td>
 
-
-
-
               
                 <td>
-                    <button><a  href="edit.php?id=<?php echo $employee->getId() ?>">Edit</a></button>
-                    <button> <a href="delete.php?id=<?php echo $employee->getId() ?>">delete</a></button>
+                    <button class="btn btn-secondary " ><a class="text-decoration-none " id="edit-delete" href="edit.php?id=<?php echo $employee->getId() ?>">Edit</a></button>
+                    <button class="btn btn-danger"> <a class="text-decoration-none " id="edit-delete" href="delete.php?id=<?php echo $employee->getId() ?>">delete</a></button>
                 </td>
             </tr>
             <?php }?>
