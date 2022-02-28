@@ -18,7 +18,7 @@
         }
 
         public function getAllEmployees(){
-            $sqlGetData = 'SELECT id,registNumber, first_name, last_name, date_naissance, functionEmployee ,salary,departement,photo  FROM employees ';
+            $sqlGetData = 'SELECT id,registNumber, first_name, last_name, birth_date, functionEmployee ,salary,departement,photo  FROM employees ';
             $result = mysqli_query($this->getConnection() ,$sqlGetData);
             $employeesList = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -26,10 +26,10 @@
             foreach($employeesList as $employee_list){
                 $employee = new Employee();
                 $employee->setId($employee_list['id']);
-                $employee->setregistrationNumber($employee_list['registNumber']);
+                $employee->setRegistrationNumber($employee_list['registNumber']);
                 $employee->setFirstName($employee_list['first_name']);
                 $employee->setLastName($employee_list['last_name']);
-                $employee->setDateNaissance($employee_list['date_naissance']);
+                $employee->setBirthDate($employee_list['birth_date']);
                 $employee->setFunctionEmployee($employee_list['functionEmployee']);
                 $employee->setSalary($employee_list['salary']);
                 $employee->setDepartement($employee_list['departement']);
@@ -46,7 +46,7 @@
             $registrationNumber = $employee->getRegistrationNumber();
             $firstName = $employee->getFirstName();
             $lastName = $employee->getLastName();
-            $dateNaissance = $employee->getDateNaissance();
+            $birthDate = $employee->getBirthDate();
             $functionEmployee= $employee->getFunctionEmployee();
             $salary=$employee->getSalary();
             $departement = $employee->getDepartement();
@@ -59,7 +59,7 @@
                                     registNumber,
                                     first_name, 
                                     last_name, 
-                                    date_naissance ,
+                                    birth_date ,
                                     functionEmployee ,
                                     salary,
                                     departement,
@@ -68,7 +68,7 @@
                                     '$registrationNumber', 
                                     '$firstName',
                                     '$lastName',
-                                    '$dateNaissance',
+                                    '$birthDate',
                                     '$functionEmployee',
                                     '$salary',
                                     '$departement',
@@ -87,7 +87,7 @@
                                     $registrationNumber,
                                     $firstName,
                                     $lastName,
-                                    $dateNaissance,
+                                    $birthDate,
                                     $functionEmployee,
                                     $salary,
                                     $departement,
@@ -98,7 +98,7 @@
                          registNumber='$registrationNumber',
                          first_name='$firstName', 
                          last_name='$lastName', 
-                         date_naissance='$dateNaissance' ,
+                         birth_date='$birthDate' ,
                          functionEmployee ='$functionEmployee',
                          salary='$salary',
                          departement='$departement',
@@ -129,7 +129,7 @@
             $employee->setRegistrationNumber($employee_data['registNumber']);
             $employee->setFirstName($employee_data['first_name']);
             $employee->setLastName($employee_data['last_name']);
-            $employee->setDateNaissance($employee_data['date_naissance']);
+            $employee->setBirthDate($employee_data['birth_date']);
             $employee->setFunctionEmployee($employee_data['functionEmployee']);
             $employee->setSalary($employee_data['salary']);
             $employee->setDepartement($employee_data['departement']);

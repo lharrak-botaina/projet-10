@@ -5,7 +5,7 @@
         private $registrationNumber;
         private $firstName;
         private $lastName;
-        private $dateNaissance;
+        private $birthDate;
         private $function;
         private $salary;
         private $departement;
@@ -42,12 +42,12 @@
             $this->lastName= $value;
         }
 
-        public function getDateNaissance(){
-            return $this->dateNaissance;
+        public function getBirthDate(){
+            return $this->birthDate;
         }
 
-        public function setDateNaissance($value){
-            $this->dateNaissance= $value;
+        public function setBirthDate($value){
+            $this->birthDate= $value;
         }
 
 
